@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -83,6 +84,7 @@ class _PolygonsPageState extends State<PolygonsPage>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            _getAnimatedText(),
             Expanded(
               child: AnimatedBuilder(
                 animation: animation,
@@ -115,6 +117,23 @@ class _PolygonsPageState extends State<PolygonsPage>
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _getAnimatedText() {
+    return SizedBox(
+      width: 600,
+      child: TextLiquidFill(
+        text: 'Try to change the sides.',
+        waveColor: dotColor,
+        boxBackgroundColor: bgColor,
+        textStyle: TextStyle(
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold,
+        ),
+        boxHeight: 100.0,
+        waveDuration: Duration(seconds: 8),
       ),
     );
   }
