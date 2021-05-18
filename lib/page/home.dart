@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:basic_utils/basic_utils.dart';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/cupertino.dart';
@@ -172,7 +174,10 @@ class _HomePageState extends State<HomePage> {
               FloatingActionButton(
                 backgroundColor: secondaryColor,
                 elevation: defaultElevation / 4,
-                child: const Icon(Icons.navigation),
+                child: Transform.rotate(
+                  angle: math.pi / 4,
+                  child: Icon(Icons.navigation_outlined),
+                ),
                 onPressed: () => context.beamToNamed(polygons),
               ),
             ],
