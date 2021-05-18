@@ -1,16 +1,13 @@
 # fl_pages
 
-A new Flutter project.
+A sample Flutter project to show navigation with [beamer](https://pub.dev/packages/beamer).
 
-## Getting Started
+![App in action](screenshots/fl_pages.gif)
 
-This project is a starting point for a Flutter application.
+## credits
+Sample code in the pages are mostly from
+- [animated_text_kit](https://pub.dev/packages/animated_text_kit)
+- [smooth_page_indicator](https://pub.dev/packages/smooth_page_indicator)
+- [codemagic's blog](https://blog.codemagic.io/flutter-custom-painter/)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Enjoy!**
