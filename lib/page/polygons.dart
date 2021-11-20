@@ -4,9 +4,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../constants/constants.dart';
+import '../shared/my_scaffold.dart';
 
 class PolygonsPage extends StatefulWidget {
+  const PolygonsPage({Key? key}) : super(key: key);
+
   @override
   _PolygonsPageState createState() => _PolygonsPageState();
 }
@@ -35,8 +38,8 @@ class _PolygonsPageState extends State<PolygonsPage>
       duration: Duration(seconds: 4),
     );
 
-    var _radiusTween = Tween<double>(begin: 0.0, end: 200);
-    var _rotationTween = Tween<double>(begin: -math.pi, end: math.pi);
+    final _radiusTween = Tween<double>(begin: 0.0, end: 200);
+    final _rotationTween = Tween<double>(begin: -math.pi, end: math.pi);
 
     animation = _rotationTween.animate(controller)
       ..addListener(() {
@@ -75,7 +78,7 @@ class _PolygonsPageState extends State<PolygonsPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MyScaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
         title: Text(StringUtils.capitalize(polygons)),
@@ -147,25 +150,25 @@ class ShapePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var _paint = Paint()
+    final _paint = Paint()
       ..color = secondaryColor
       ..strokeWidth = 5
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    var _path = Path();
+    final _path = Path();
 
-    var _angle = (math.pi * 2) / sides;
+    final _angle = (math.pi * 2) / sides;
 
-    var _center = Offset(size.width / 2, size.height / 2);
-    var _startPoint =
+    final _center = Offset(size.width / 2, size.height / 2);
+    final _startPoint =
         Offset(radius * math.cos(radians), radius * math.sin(radians));
 
     _path.moveTo(_startPoint.dx + _center.dx, _startPoint.dy + _center.dy);
 
     for (var i = 1; i <= sides; i++) {
-      var _x = radius * math.cos(radians + _angle * i) + _center.dx;
-      var _y = radius * math.sin(radians + _angle * i) + _center.dy;
+      final _x = radius * math.cos(radians + _angle * i) + _center.dx;
+      final _y = radius * math.sin(radians + _angle * i) + _center.dy;
       _path.lineTo(_x, _y);
     }
     _path.close();

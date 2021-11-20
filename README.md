@@ -1,6 +1,6 @@
 # fl_pages
 
-A sample Flutter project to show navigation with [beamer](https://pub.dev/packages/beamer).
+A sample Flutter project to show navigation with [beamer](https://pub.dev/packages/beamer) --> [go_router](https://pub.dev/packages/go_router).
 
 ![App in action](screenshots/fl_pages.gif)
 

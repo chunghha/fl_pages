@@ -1,8 +1,7 @@
-import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'location/router.dart';
+import 'router.dart';
 import 'util/index.dart';
 
 void main() async {
@@ -15,6 +14,8 @@ void main() async {
 }
 
 class PagesApp extends StatelessWidget {
+  const PagesApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,8 @@ class PagesApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Pages Demo',
       theme: getAppTheme(context),
-      routeInformationParser: BeamerParser(),
-      routerDelegate: routerDelegate,
-      backButtonDispatcher:
-          BeamerBackButtonDispatcher(delegate: routerDelegate),
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }
