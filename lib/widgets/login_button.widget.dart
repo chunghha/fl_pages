@@ -30,8 +30,6 @@ class LoginButton extends HookConsumerWidget {
                 passwordController.text,
                 tokenController.text,
               );
-          // * hack: https://github.com/rrousselGit/river_pod/issues/815
-          ref.watch(authStateNotifierPod); // not working
 
           goToPage(context: context, ref: ref, pageToGo: CURRENT_PAGE.home);
         },
