@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../app.router.dart';
 import '../constants/constants.dart';
 import '../constants/current_page.enum.dart';
 import '../pods/current_page.pod.dart';
@@ -12,17 +13,6 @@ class MyNavigator extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final _currentPageProvider = ref.watch(currentPagePod);
-
-    void _goToPage(CURRENT_PAGE index) {
-      switch (index) {
-        case CURRENT_PAGE.home:
-          return context.go(CURRENT_PAGE.home.toPath());
-        case CURRENT_PAGE.polygon:
-          return context.go(CURRENT_PAGE.polygon.toPath());
-        default:
-          break;
-      }
-    }
 
     return BottomNavigationBar(
       backgroundColor: bgColor,
@@ -38,8 +28,15 @@ class MyNavigator extends HookConsumerWidget {
       ],
       currentIndex: _currentPageProvider,
       onTap: (_index) {
+        if (kDebugMode) {
+          print('|.. _index onTap: $_index');
+        }
         ref.read(currentPagePod.notifier).update(_index);
-        _goToPage(CURRENT_PAGE.values[_index]);
+        goToPage(
+          context: context,
+          ref: ref,
+          pageToGo: CURRENT_PAGE.values[_index],
+        );
       },
     );
   }

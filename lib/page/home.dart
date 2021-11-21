@@ -6,9 +6,9 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../app.router.dart';
 import '../constants/constants.dart';
 import '../constants/current_page.enum.dart';
-import '../router.dart';
 import '../shared/my_scaffold.dart';
 
 class HomePage extends ConsumerStatefulWidget {
