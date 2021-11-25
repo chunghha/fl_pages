@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app.router.dart';
 import '../constants/constants.dart';
 import '../constants/current_page.enum.dart';
 import '../pods/auth.pod.dart';
+import '../shared/router.helper.dart';
 
 class LoginButton extends HookConsumerWidget {
   final TextEditingController emailController;
@@ -31,7 +31,7 @@ class LoginButton extends HookConsumerWidget {
                 tokenController.text,
               );
 
-          goToPage(context: context, ref: ref, pageToGo: CURRENT_PAGE.home);
+          goForward(context: context, ref: ref, pageToGo: CURRENT_PAGE.home);
         },
         child: Text(
           'LOG IN',

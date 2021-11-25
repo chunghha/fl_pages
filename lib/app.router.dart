@@ -9,7 +9,6 @@ import 'page/home.dart';
 import 'page/login.page.dart';
 import 'page/polygons.dart';
 import 'pods/auth.pod.dart';
-import 'pods/current_page.pod.dart';
 import 'states/auth.state.dart';
 
 // * wrap GoRouter with Provider for ref to watch authStateNotifierPod
@@ -79,12 +78,3 @@ final refreshListenableProvider = Provider(
     ],
   ),
 );
-
-void goToPage({
-  required BuildContext context,
-  required WidgetRef ref,
-  required CURRENT_PAGE pageToGo,
-}) {
-  ref.read(currentPagePod.notifier).update(pageToGo.toIndex());
-  context.go(pageToGo.toPath());
-}

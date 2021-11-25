@@ -6,10 +6,10 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../app.router.dart';
 import '../constants/constants.dart';
 import '../constants/current_page.enum.dart';
 import '../shared/my_scaffold.dart';
+import '../shared/router.helper.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -168,7 +168,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   angle: math.pi / 4,
                   child: Icon(Icons.navigation_outlined),
                 ),
-                onPressed: () => goToPage(
+                onPressed: () => goForward(
                   context: context,
                   ref: ref,
                   pageToGo: CURRENT_PAGE.polygon,

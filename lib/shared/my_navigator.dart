@@ -2,10 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app.router.dart';
 import '../constants/constants.dart';
 import '../constants/current_page.enum.dart';
 import '../pods/current_page.pod.dart';
+import '../states/current_page.state.dart';
+import 'router.helper.dart';
 
 class MyNavigator extends HookConsumerWidget {
   const MyNavigator({Key? key}) : super(key: key);
@@ -26,13 +27,18 @@ class MyNavigator extends HookConsumerWidget {
           label: CURRENT_PAGE.polygon.toLabel(),
         ),
       ],
-      currentIndex: _currentPageProvider,
+      currentIndex: _currentPageProvider.last.currentPage.toIndex(),
       onTap: (_index) {
         if (kDebugMode) {
           print('|.. _index onTap: $_index');
         }
-        ref.read(currentPagePod.notifier).update(_index);
-        goToPage(
+        ref.read(currentPagePod.notifier).update(
+              CurrentPageState(
+                CURRENT_PAGE.values[_index],
+                CURRENT_PAGE.values[_index].toPath(),
+              ),
+            );
+        goForward(
           context: context,
           ref: ref,
           pageToGo: CURRENT_PAGE.values[_index],
