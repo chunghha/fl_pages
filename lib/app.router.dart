@@ -16,6 +16,7 @@ import 'states/auth.state.dart';
 final appRouter = Provider<GoRouter>(
   (ref) => GoRouter(
     debugLogDiagnostics: kDebugMode,
+    restorationScopeId: 'router',
     urlPathStrategy: UrlPathStrategy.path,
     routes: [
       GoRoute(
