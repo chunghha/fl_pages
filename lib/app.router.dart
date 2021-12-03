@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -20,30 +19,18 @@ final appRouter = Provider<GoRouter>(
     routes: [
       GoRoute(
         path: CURRENT_PAGE.home.toPath(),
-        pageBuilder: (context, state) => MaterialPage<void>(
-          key: state.pageKey,
-          child: HomePage(),
-        ),
+        builder: (context, state) => HomePage(),
       ),
       GoRoute(
         path: CURRENT_PAGE.polygon.toPath(),
-        pageBuilder: (context, state) => MaterialPage<void>(
-          key: state.pageKey,
-          child: PolygonsPage(),
-        ),
+        builder: (context, state) => PolygonsPage(),
       ),
       GoRoute(
         path: CURRENT_PAGE.login.toPath(),
-        pageBuilder: (context, state) => MaterialPage<void>(
-          key: state.pageKey,
-          child: LoginPage(),
-        ),
+        builder: (context, state) => LoginPage(),
       ),
     ],
-    errorPageBuilder: (context, state) => MaterialPage<void>(
-      key: state.pageKey,
-      child: ErrorPage(state.error),
-    ),
+    errorBuilder: (context, state) => ErrorPage(state.error!),
     redirect: (state) {
       // * hack: https://github.com/rrousselGit/river_pod/issues/815
       // * use ref.read() instead of ref.watch()
