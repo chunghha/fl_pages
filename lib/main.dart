@@ -59,6 +59,7 @@ class _PagesAppState extends ConsumerState<PagesApp> with RestorationMixin {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       routeInformationParser: ref.watch(appRouter).routeInformationParser,
       routerDelegate: ref.watch(appRouter).routerDelegate,
       restorationScopeId: 'app',

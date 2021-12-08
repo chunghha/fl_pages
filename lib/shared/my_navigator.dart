@@ -26,6 +26,10 @@ class MyNavigator extends HookConsumerWidget {
           icon: CURRENT_PAGE.polygon.toIcon(),
           label: CURRENT_PAGE.polygon.toLabel(),
         ),
+        BottomNavigationBarItem(
+          icon: CURRENT_PAGE.form.toIcon(),
+          label: CURRENT_PAGE.form.toLabel(),
+        ),
       ],
       currentIndex: _currentPageProvider.last.currentPage.toIndex(),
       onTap: (_index) {

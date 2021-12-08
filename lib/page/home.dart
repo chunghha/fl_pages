@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -54,7 +53,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       backgroundColor: canvasColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Text(StringUtils.capitalize(home)),
+        title: Text(CURRENT_PAGE.home.toTitle()),
       ),
       body: Center(
         child: Directionality(

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'constants/current_page.enum.dart';
 import 'page/error.dart';
+import 'page/form.page.dart';
 import 'page/home.dart';
 import 'page/login.page.dart';
 import 'page/polygons.dart';
@@ -24,6 +25,10 @@ final appRouter = Provider<GoRouter>(
       GoRoute(
         path: CURRENT_PAGE.polygon.toPath(),
         builder: (context, state) => PolygonsPage(),
+      ),
+      GoRoute(
+        path: CURRENT_PAGE.form.toPath(),
+        builder: (context, state) => FormPage(),
       ),
       GoRoute(
         path: CURRENT_PAGE.login.toPath(),

@@ -1,10 +1,10 @@
 import 'dart:math' as math;
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
+import '../constants/current_page.enum.dart';
 import '../shared/my_scaffold.dart';
 
 class PolygonsPage extends StatefulWidget {
@@ -81,7 +81,7 @@ class _PolygonsPageState extends State<PolygonsPage>
     return MyScaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
-        title: Text(StringUtils.capitalize(polygons)),
+        title: Text(CURRENT_PAGE.polygon.toTitle()),
       ),
       body: SafeArea(
         child: Column(
