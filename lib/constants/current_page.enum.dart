@@ -29,19 +29,6 @@ extension CurrentPageExtension on CURRENT_PAGE {
     }
   }
 
-  String toLabel() {
-    switch (this) {
-      case CURRENT_PAGE.home:
-        return 'Home';
-      case CURRENT_PAGE.polygon:
-        return 'Polygon';
-      case CURRENT_PAGE.form:
-        return 'Form';
-      case CURRENT_PAGE.login:
-        return 'Login';
-    }
-  }
-
   String toPath() {
     switch (this) {
       case CURRENT_PAGE.home:

@@ -1,3 +1,4 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,15 +21,15 @@ class MyNavigator extends HookConsumerWidget {
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: CURRENT_PAGE.home.toIcon(),
-          label: CURRENT_PAGE.home.toLabel(),
+          label: StringUtils.capitalize(CURRENT_PAGE.home.name),
         ),
         BottomNavigationBarItem(
           icon: CURRENT_PAGE.polygon.toIcon(),
-          label: CURRENT_PAGE.polygon.toLabel(),
+          label: StringUtils.capitalize(CURRENT_PAGE.polygon.name),
         ),
         BottomNavigationBarItem(
           icon: CURRENT_PAGE.form.toIcon(),
-          label: CURRENT_PAGE.form.toLabel(),
+          label: StringUtils.capitalize(CURRENT_PAGE.form.name),
         ),
       ],
       currentIndex: _currentPageProvider.last.currentPage.toIndex(),

@@ -14,5 +14,5 @@ class CurrentPageState extends Equatable {
   List<Object?> get props => [currentPage, path];
 
   @override
-  String toString() => 'currentPage: ${currentPage.toLabel()}, path: $path';
+  String toString() => 'currentPage: ${currentPage.name}, path: $path';
 }
