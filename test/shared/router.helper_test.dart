@@ -29,20 +29,17 @@ class GoBackDummy extends ConsumerWidget {
     // go back to previous route
     // TODO: find out how to fix 'No GoRouter found in context'
     // goBack(context: context, ref: ref);
-    final _currentPage = ref.read(currentPagePod);
+    final currentPage = ref.read(currentPagePod);
 
-    return Text(_currentPage.last.path);
+    return Text(currentPage.last.path);
   }
 }
 
 void main() {
   group('router.helper', () {
-    setUp(() => {});
-
     testWidgets('goBack() should return to the previous path ...',
         (tester) async {
-      final _router = GoRouter(
-        initialLocation: '/',
+      final router = GoRouter(
         routes: [
           GoRoute(path: CURRENT_PAGE.home.toPath()),
           GoRoute(path: CURRENT_PAGE.polygon.toPath()),
@@ -56,9 +53,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           child: MaterialApp.router(
-            routeInformationParser: _router.routeInformationParser,
-            routerDelegate: _router.routerDelegate,
-            builder: (context, _router) => GoBackDummy(),
+            routeInformationParser: router.routeInformationParser,
+            routerDelegate: router.routerDelegate,
+            builder: (_, __) => const GoBackDummy(),
           ),
         ),
       );

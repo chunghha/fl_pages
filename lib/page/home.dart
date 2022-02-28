@@ -14,16 +14,16 @@ class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class HomePageState extends ConsumerState<HomePage> {
   final controller = PageController(viewportFraction: 0.8);
 
-  void _goToPage(index) {
+  void _goToPage(int index) {
     controller.animateToPage(
       index,
-      duration: Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 700),
       curve: Curves.easeInOut,
     );
   }
@@ -58,122 +58,121 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: Center(
         child: Directionality(
           textDirection: TextDirection.ltr,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Gap(defaultPadding),
-              SizedBox(
-                height: 300,
-                child: PageView(
-                  controller: controller,
-                  children: List.generate(
-                    6,
-                    (_cardIndex) => Card(
-                      color: _setCardColor(_cardIndex),
-                      shadowColor: bgColorDarker,
-                      elevation: defaultElevation / 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Gap(defaultPadding),
+                SizedBox(
+                  height: 300,
+                  child: PageView(
+                    controller: controller,
+                    children: List.generate(
+                      6,
+                      (cardIndex) => Card(
+                        color: _setCardColor(cardIndex),
+                        shadowColor: bgColorDarker,
+                        elevation: defaultElevation / 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        child: Container(height: 280),
                       ),
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      child: Container(height: 280),
                     ),
                   ),
                 ),
-              ),
-              Gap(defaultPadding),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: defaultPadding,
-                  bottom: defaultPadding / 2,
+                const Gap(defaultPadding),
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: defaultPadding,
+                    bottom: defaultPadding / 2,
+                  ),
+                  child: Text('Worm'),
                 ),
-                child: Text('Worm'),
-              ),
-              SmoothPageIndicator(
-                controller: controller,
-                count: 6,
-                onDotClicked: _goToPage,
-                effect: WormEffect(
-                  dotColor: dotColor,
-                  activeDotColor: activeDotColor,
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 6,
+                  onDotClicked: _goToPage,
+                  effect: const WormEffect(
+                    dotColor: dotColor,
+                    activeDotColor: activeDotColor,
+                  ),
                 ),
-              ),
-              Gap(defaultPadding / 2),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: defaultPadding,
-                  bottom: defaultPadding / 2,
+                const Gap(defaultPadding / 2),
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: defaultPadding,
+                    bottom: defaultPadding / 2,
+                  ),
+                  child: Text('Expanding Dots'),
                 ),
-                child: Text('Expanding Dots'),
-              ),
-              SmoothPageIndicator(
-                controller: controller,
-                count: 6,
-                onDotClicked: _goToPage,
-                effect: ExpandingDotsEffect(
-                  dotColor: dotColor,
-                  activeDotColor: activeDotColor,
-                  expansionFactor: 4,
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 6,
+                  onDotClicked: _goToPage,
+                  effect: const ExpandingDotsEffect(
+                    dotColor: dotColor,
+                    activeDotColor: activeDotColor,
+                    expansionFactor: 4,
+                  ),
                 ),
-              ),
-              Gap(defaultPadding / 2),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: defaultPadding,
-                  bottom: defaultPadding / 2,
+                const Gap(defaultPadding / 2),
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: defaultPadding,
+                    bottom: defaultPadding / 2,
+                  ),
+                  child: Text('Scale'),
                 ),
-                child: Text('Scale'),
-              ),
-              SmoothPageIndicator(
-                controller: controller,
-                count: 6,
-                onDotClicked: _goToPage,
-                effect: ScaleEffect(
-                  dotColor: dotColor,
-                  activeDotColor: activeDotColor,
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 6,
+                  onDotClicked: _goToPage,
+                  effect: const ScaleEffect(
+                    dotColor: dotColor,
+                    activeDotColor: activeDotColor,
+                  ),
                 ),
-              ),
-              Gap(defaultPadding / 2),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: defaultPadding,
-                  bottom: defaultPadding / 2,
+                const Gap(defaultPadding / 2),
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: defaultPadding,
+                    bottom: defaultPadding / 2,
+                  ),
+                  child: Text('Slide'),
                 ),
-                child: Text('Slide'),
-              ),
-              SmoothPageIndicator(
-                controller: controller,
-                count: 6,
-                onDotClicked: _goToPage,
-                effect: SlideEffect(
-                  spacing: 8.0,
-                  radius: 4.0,
-                  dotWidth: 24.0,
-                  dotHeight: 16.0,
-                  dotColor: dotColor,
-                  paintStyle: PaintingStyle.stroke,
-                  strokeWidth: 1,
-                  activeDotColor: activeDotColor,
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 6,
+                  onDotClicked: _goToPage,
+                  effect: const SlideEffect(
+                    radius: 4,
+                    dotWidth: 24,
+                    dotColor: dotColor,
+                    paintStyle: PaintingStyle.stroke,
+                    activeDotColor: activeDotColor,
+                  ),
                 ),
-              ),
-              Gap(defaultPadding * 1.5),
-              FloatingActionButton(
-                backgroundColor: secondaryColor,
-                elevation: defaultElevation / 4,
-                child: Transform.rotate(
-                  angle: math.pi / 4,
-                  child: Icon(Icons.navigation_outlined),
+                const Gap(defaultPadding * 1.5),
+                FloatingActionButton(
+                  backgroundColor: secondaryColor,
+                  elevation: defaultElevation / 4,
+                  child: Transform.rotate(
+                    angle: math.pi / 4,
+                    child: const Icon(Icons.navigation_outlined),
+                  ),
+                  onPressed: () => goForward(
+                    context: context,
+                    ref: ref,
+                    pageToGo: CURRENT_PAGE.polygon,
+                  ),
                 ),
-                onPressed: () => goForward(
-                  context: context,
-                  ref: ref,
-                  pageToGo: CURRENT_PAGE.polygon,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

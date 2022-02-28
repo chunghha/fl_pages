@@ -14,7 +14,7 @@ class MyNavigator extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _currentPageProvider = ref.watch(currentPagePod);
+    final currentPageProvider = ref.watch(currentPagePod);
 
     return BottomNavigationBar(
       backgroundColor: bgColor,
@@ -32,21 +32,21 @@ class MyNavigator extends HookConsumerWidget {
           label: StringUtils.capitalize(CURRENT_PAGE.form.name),
         ),
       ],
-      currentIndex: _currentPageProvider.last.currentPage.toIndex(),
-      onTap: (_index) {
+      currentIndex: currentPageProvider.last.currentPage.toIndex(),
+      onTap: (index) {
         if (kDebugMode) {
-          print('|.. _index onTap: $_index');
+          print('|.. _index onTap: $index');
         }
         ref.read(currentPagePod.notifier).update(
               CurrentPageState(
-                CURRENT_PAGE.values[_index],
-                CURRENT_PAGE.values[_index].toPath(),
+                CURRENT_PAGE.values[index],
+                CURRENT_PAGE.values[index].toPath(),
               ),
             );
         goForward(
           context: context,
           ref: ref,
-          pageToGo: CURRENT_PAGE.values[_index],
+          pageToGo: CURRENT_PAGE.values[index],
         );
       },
     );

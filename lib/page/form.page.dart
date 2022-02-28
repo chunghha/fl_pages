@@ -40,7 +40,7 @@ class FormPage extends StatelessWidget {
         'password': ['', Validators.required, Validators.minLength(8)],
         'passwordConfirmation': '',
         'rememberMe': false,
-        'progress': fb.control<double>(50.0, [Validators.min(50.0)]),
+        'progress': fb.control<double>(50, [Validators.min(50)]),
         'dateTime': DateTime.now(),
         'time': TimeOfDay.now(),
       }, [
@@ -69,12 +69,12 @@ class FormPage extends StatelessWidget {
                   formControlName: 'email',
                   builder: (context, control, child) => Visibility(
                     visible: control.pending,
-                    child: CircularProgressIndicator(),
+                    child: const CircularProgressIndicator(),
                   ),
                 ),
               ),
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveTextField<String>(
               formControlName: 'password',
               obscureText: true,
@@ -87,7 +87,7 @@ class FormPage extends StatelessWidget {
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(labelText: 'Password'),
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveTextField<String>(
               formControlName: 'passwordConfirmation',
               decoration: const InputDecoration(labelText: 'Confirm Password'),
@@ -98,7 +98,7 @@ class FormPage extends StatelessWidget {
               onSubmitted: () => form.focus('rememberMe'),
               textInputAction: TextInputAction.next,
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveFormConsumer(
               builder: (context, form, child) => ElevatedButton(
                 // ignore: avoid_print
@@ -111,7 +111,7 @@ class FormPage extends StatelessWidget {
                 {
                   'email':
                       ControlState<String>(value: 'johnDoe', disabled: true),
-                  'progress': ControlState<double>(value: 50.0),
+                  'progress': ControlState<double>(value: 50),
                   'rememberMe': ControlState<bool>(value: false),
                 },
                 removeFocus: true,
@@ -142,11 +142,11 @@ class FormPage extends StatelessWidget {
             ),
             ReactiveRadioListTile(
               formControlName: 'rememberMe',
-              title: const Text('Don\'t Remember me'),
+              title: const Text("Don't Remember me"),
               value: false,
               toggleable: true,
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveValueListenableBuilder<double>(
               formControlName: 'progress',
               builder: (context, control, child) => Text(
@@ -159,9 +159,9 @@ class FormPage extends StatelessWidget {
               formControlName: 'progress',
               max: 100,
               divisions: 100,
-              labelBuilder: (double value) => '${value.toStringAsFixed(2)}%',
+              labelBuilder: (value) => '${value.toStringAsFixed(2)}%',
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveTextField<double>(
               formControlName: 'progress',
               keyboardType: TextInputType.number,
@@ -171,7 +171,7 @@ class FormPage extends StatelessWidget {
                     'A value lower than 50.00 is not accepted',
               },
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveTextField<DateTime>(
               formControlName: 'dateTime',
               readOnly: true,
@@ -190,7 +190,7 @@ class FormPage extends StatelessWidget {
                 ),
               ),
             ),
-            Gap(defaultPadding),
+            const Gap(defaultPadding),
             ReactiveTextField<TimeOfDay>(
               formControlName: 'time',
               readOnly: true,
@@ -207,7 +207,7 @@ class FormPage extends StatelessWidget {
                 ),
               ),
             ),
-            Gap(defaultPadding)
+            const Gap(defaultPadding)
           ],
         );
       },
@@ -223,7 +223,7 @@ class FormPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(defaultPadding),
+          padding: const EdgeInsets.all(defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

@@ -11,10 +11,10 @@ class PolygonsPage extends StatefulWidget {
   const PolygonsPage({Key? key}) : super(key: key);
 
   @override
-  _PolygonsPageState createState() => _PolygonsPageState();
+  PolygonsPageState createState() => PolygonsPageState();
 }
 
-class _PolygonsPageState extends State<PolygonsPage>
+class PolygonsPageState extends State<PolygonsPage>
     with TickerProviderStateMixin {
   var _sides = 3.0;
 
@@ -30,18 +30,18 @@ class _PolygonsPageState extends State<PolygonsPage>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
     );
 
     controller2 = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
     );
 
-    final _radiusTween = Tween<double>(begin: 0.0, end: 200);
-    final _rotationTween = Tween<double>(begin: -math.pi, end: math.pi);
+    final radiusTween = Tween<double>(begin: 0, end: 200);
+    final rotationTween = Tween<double>(begin: -math.pi, end: math.pi);
 
-    animation = _rotationTween.animate(controller)
+    animation = rotationTween.animate(controller)
       ..addListener(() {
         setState(() {});
       })
@@ -53,7 +53,7 @@ class _PolygonsPageState extends State<PolygonsPage>
         }
       });
 
-    animation2 = _radiusTween.animate(controller2)
+    animation2 = radiusTween.animate(controller2)
       ..addListener(() {
         setState(() {});
       })
@@ -100,16 +100,16 @@ class _PolygonsPageState extends State<PolygonsPage>
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 24),
               child: Text('Sides'),
             ),
             Slider(
               activeColor: primaryColor,
               inactiveColor: bgColorDarker,
               value: _sides,
-              min: 3.0,
-              max: 10.0,
+              min: 3,
+              max: 10,
               label: _sides.toInt().toString(),
               divisions: 7,
               onChanged: (value) {
@@ -131,48 +131,49 @@ class _PolygonsPageState extends State<PolygonsPage>
         text: 'Try to change the sides.',
         waveColor: dotColor,
         boxBackgroundColor: bgColor,
-        textStyle: TextStyle(
-          fontSize: 25.0,
+        textStyle: const TextStyle(
+          fontSize: 25,
           fontWeight: FontWeight.bold,
         ),
-        boxHeight: 100.0,
-        waveDuration: Duration(seconds: 8),
+        boxHeight: 100,
+        waveDuration: const Duration(seconds: 8),
       ),
     );
   }
 }
 
 class ShapePainter extends CustomPainter {
+  ShapePainter(this.sides, this.radius, this.radians);
+
   final double sides;
   final double radius;
   final double radians;
-  ShapePainter(this.sides, this.radius, this.radians);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final _paint = Paint()
+    final paint = Paint()
       ..color = secondaryColor
       ..strokeWidth = 5
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    final _path = Path();
+    final path = Path();
 
-    final _angle = (math.pi * 2) / sides;
+    final angle = (math.pi * 2) / sides;
 
-    final _center = Offset(size.width / 2, size.height / 2);
-    final _startPoint =
+    final center = Offset(size.width / 2, size.height / 2);
+    final startPoint =
         Offset(radius * math.cos(radians), radius * math.sin(radians));
 
-    _path.moveTo(_startPoint.dx + _center.dx, _startPoint.dy + _center.dy);
+    path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
 
     for (var i = 1; i <= sides; i++) {
-      final _x = radius * math.cos(radians + _angle * i) + _center.dx;
-      final _y = radius * math.sin(radians + _angle * i) + _center.dy;
-      _path.lineTo(_x, _y);
+      final x = radius * math.cos(radians + angle * i) + center.dx;
+      final y = radius * math.sin(radians + angle * i) + center.dy;
+      path.lineTo(x, y);
     }
-    _path.close();
-    canvas.drawPath(_path, _paint);
+    path.close();
+    canvas.drawPath(path, paint);
   }
 
   @override

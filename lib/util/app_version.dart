@@ -4,11 +4,11 @@ import 'package:package_info/package_info.dart';
 
 final _logger = Logger();
 
-void printAppVersion() async {
+Future<void> printAppVersion() async {
   if (!kIsWeb) {
-    final _appInfo = await PackageInfo.fromPlatform();
-    final _version = _appInfo.version;
-    final _build = _appInfo.buildNumber;
-    _logger.i('App Version: $_version+$_build');
+    final appInfo = await PackageInfo.fromPlatform();
+    final version = appInfo.version;
+    final build = appInfo.buildNumber;
+    _logger.i('App Version: $version+$build');
   }
 }

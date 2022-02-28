@@ -20,39 +20,39 @@ final appRouter = Provider<GoRouter>(
     routes: [
       GoRoute(
         path: CURRENT_PAGE.home.toPath(),
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => const HomePage(),
       ),
       GoRoute(
         path: CURRENT_PAGE.polygon.toPath(),
-        builder: (context, state) => PolygonsPage(),
+        builder: (context, state) => const PolygonsPage(),
       ),
       GoRoute(
         path: CURRENT_PAGE.form.toPath(),
-        builder: (context, state) => FormPage(),
+        builder: (context, state) => const FormPage(),
       ),
       GoRoute(
         path: CURRENT_PAGE.login.toPath(),
-        builder: (context, state) => LoginPage(),
+        builder: (context, state) => const LoginPage(),
       ),
     ],
-    errorBuilder: (context, state) => ErrorPage(state.error!),
+    errorBuilder: (context, state) => ErrorPage(state.error),
     redirect: (state) {
       // * hack: https://github.com/rrousselGit/river_pod/issues/815
       // * use ref.read() instead of ref.watch()
-      final _authStateProvider = ref.read(authStateNotifierPod);
-      final _routeToPath = state.location;
+      final authStateProvider = ref.read(authStateNotifierPod);
+      final routeToPath = state.location;
 
       if (kDebugMode) {
-        print('|.. _routeToPath: $_routeToPath');
-        print('\\.... _authStatus: ${_authStateProvider.status}');
+        print('|.. _routeToPath: $routeToPath');
+        print('\\.... _authStatus: ${authStateProvider.status}');
       }
       // * not just authStatus but also check the path to go as well
-      if (_authStateProvider.status == AuthStatus.unauthenticated &&
-          _routeToPath != CURRENT_PAGE.login.toPath()) {
+      if (authStateProvider.status == AuthStatus.unauthenticated &&
+          routeToPath != CURRENT_PAGE.login.toPath()) {
         return CURRENT_PAGE.login.toPath();
       }
-      if (_authStateProvider.status == AuthStatus.authenticated &&
-          _routeToPath == CURRENT_PAGE.login.toPath()) {
+      if (authStateProvider.status == AuthStatus.authenticated &&
+          routeToPath == CURRENT_PAGE.login.toPath()) {
         return CURRENT_PAGE.home.toPath();
       }
 

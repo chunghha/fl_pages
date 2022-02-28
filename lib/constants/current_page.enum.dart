@@ -6,13 +6,13 @@ extension CurrentPageExtension on CURRENT_PAGE {
   Icon toIcon() {
     switch (this) {
       case CURRENT_PAGE.home:
-        return Icon(Icons.call);
+        return const Icon(Icons.call);
       case CURRENT_PAGE.polygon:
-        return Icon(Icons.camera);
+        return const Icon(Icons.camera);
       case CURRENT_PAGE.form:
-        return Icon(Icons.checklist);
+        return const Icon(Icons.checklist);
       case CURRENT_PAGE.login:
-        return Icon(Icons.login);
+        return const Icon(Icons.login);
     }
   }
 

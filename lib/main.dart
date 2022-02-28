@@ -6,25 +6,25 @@ import 'app.router.dart';
 import 'pods/auth.pod.dart';
 import 'util/index.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   registerGoogleFontsLicense();
-  setWindowSizeForDesktop();
-  printAppVersion();
+  await setWindowSizeForDesktop();
+  await printAppVersion();
   setSystemUIOverlay();
 
-  runApp(ProviderScope(child: PagesApp()));
+  runApp(const ProviderScope(child: PagesApp()));
 }
 
 class PagesApp extends ConsumerStatefulWidget {
   const PagesApp({Key? key}) : super(key: key);
 
   @override
-  _PagesAppState createState() => _PagesAppState();
+  PagesAppState createState() => PagesAppState();
 }
 
-class _PagesAppState extends ConsumerState<PagesApp> with RestorationMixin {
+class PagesAppState extends ConsumerState<PagesApp> with RestorationMixin {
   @override
   String get restorationId => 'wrapper';
 
@@ -43,9 +43,9 @@ class _PagesAppState extends ConsumerState<PagesApp> with RestorationMixin {
   void initState() {
     super.initState();
     // * use ref.read() in the widget life-cycle methods
-    final _authStateProvider = ref.read(authStateNotifierPod);
+    final authStateProvider = ref.read(authStateNotifierPod);
     if (kDebugMode) {
-      print('|.. authState: $_authStateProvider');
+      print('|.. authState: $authStateProvider');
     }
   }
 
